@@ -6,6 +6,6 @@ You can also view the default built in templates by visiting [NixOS Flake Templa
 To use these templates you can do the following (replace basic with the template you want to use):
 
 ```shell
-nix flake init github:wiltaylor/nix-template#basic
+nix flake init -t github:wiltaylor/nix-template#basic
 
 ```

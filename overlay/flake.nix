@@ -27,6 +27,15 @@
       });
     };
 
+    nixosModules = {
+      hello = {pkgs, ...}:
+      {
+          nixpkgs.overlays = [ self.overlay ];
+
+          environment.systemPackages = [ pkgs.hello ];
+      };
+    };
+
     defaultPackage = lib.withDefaultSystems (sys: self.packages."${sys}".hello);
 
     packages = lib.withDefaultSystems (sys: let
