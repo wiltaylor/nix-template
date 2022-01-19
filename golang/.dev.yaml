@@ -1,0 +1,4 @@
+actions:
+  - name: up
+    description: "Starts the development environment for this project"
+    command: "nix develop"

@@ -14,6 +14,11 @@
         path = ./overlay;
         description = "Simple flake with pkgs and overlay";
       };
+
+      golang = {
+        path = ./golang;
+        description = "Flake for a golang application";
+      };
     };
   };
 }
