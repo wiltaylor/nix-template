@@ -1,0 +1,48 @@
+name: github pages
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update apt
+        run: sudo apt-get update -y
+      - name: Install prereqs
+        run: sudo apt-get install -y plantuml graphviz
+
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: mdbook-admonish
+          version: latest
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: mdbook-graphviz
+          version: latest
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: mdbook-mermaid
+          version: latest
+      - uses: actions-rs/install@v0.1
+        with:
+          crate: mdbook-plantuml
+          version: latest
+
+      - uses: cachix/install-nix-action@v18
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+      - run: mdbook build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
