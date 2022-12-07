@@ -7,5 +7,10 @@ To use these templates you can do the following (replace basic with the template
 
 ```shell
 nix flake init -t github:wiltaylor/nix-template#basic
-
 ```
+
+## Templates:
+- basic
+- book
+- golang
+- overlay

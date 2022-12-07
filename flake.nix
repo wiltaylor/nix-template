@@ -19,6 +19,11 @@
         path = ./golang;
         description = "Flake for a golang application";
       };
+
+      book = { 
+        path = ./book;
+        description = "Flake for a ebook using mdbook";
+      };
     };
   };
 }
