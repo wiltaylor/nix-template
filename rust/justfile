@@ -1,0 +1,12 @@
+build:
+    cargo build
+
+test:
+    cargo test
+
+bench:
+    cargo bench
+
+update:
+    nix flake update
+    cargo update
